@@ -1,4 +1,4 @@
-import { generateToken04 } from '@/libs/token-generator';
+import { generateToken04 } from '@/src/libs/token-generator';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Check, User, UserId } from './dto/user.dto';
