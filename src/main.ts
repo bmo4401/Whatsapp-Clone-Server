@@ -9,7 +9,9 @@ import { TransformInterceptor } from '@/src/core/transform.interceptor';
 
 const PORT_ENV = 'PORT';
 async function bootstrap() {
-   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+      cors: true,
+   });
    const reflector = app.get(Reflector);
 
    /* configService */
