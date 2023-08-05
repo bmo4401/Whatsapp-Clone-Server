@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
-import { TransformInterceptor } from '@/core/transform.interceptor';
+import { TransformInterceptor } from '@/src/core/transform.interceptor';
 
 const PORT_ENV = 'PORT';
 async function bootstrap() {
