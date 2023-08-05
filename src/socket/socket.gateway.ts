@@ -1,4 +1,4 @@
-import SOCKET from '@/src/libs/constant';
+import SOCKET from '@/libs/constant';
 import { ConfigService } from '@nestjs/config';
 import {
    ConnectedSocket,

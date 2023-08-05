@@ -1,4 +1,4 @@
-import { Cookie, ResponseMessage } from '@/src/decorators/customize';
+import { Cookie, ResponseMessage } from '@/decorators/customize';
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { Check, User, UserId } from './dto/user.dto';
