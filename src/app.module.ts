@@ -3,10 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MessagesModule } from './messages/messages.module';
-import { UsersModule } from './users/users.module';
-import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { SocketModule } from './socket/socket.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
    imports: [

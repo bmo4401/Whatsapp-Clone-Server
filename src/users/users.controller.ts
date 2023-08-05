@@ -1,8 +1,8 @@
+import { Cookie, ResponseMessage } from '@/src/decorators/customize';
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { Check, User, UserId } from './dto/user.dto';
 import { ACCESS_TOKEN_KEY, UsersService } from './users.service';
-import { Cookie, ResponseMessage } from '@/decorators/customize';
-import { Response } from 'express';
 @Controller('auth')
 export class UsersController {
    constructor(private readonly usersService: UsersService) {}
