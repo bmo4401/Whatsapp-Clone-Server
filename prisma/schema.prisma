@@ -16,7 +16,7 @@ model User{
   id Int @id @default(autoincrement())
   email String @unique
   name String
-  profileImage String @default("")
+  profileImage String @db.Text
   about String @default("")
   sentMessages Messages[] @relation("sentMessages")
   receiverMessages Messages[] @relation("receiverMessages")
