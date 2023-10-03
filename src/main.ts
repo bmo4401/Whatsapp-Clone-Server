@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { TransformInterceptor } from '@/core/transform.interceptor';
 import { json } from 'body-parser';
+import { hostname } from 'os';
 const PORT_ENV = 'PORT';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -16,7 +17,7 @@ async function bootstrap() {
 
   /* configService */
   const configService = app.get(ConfigService);
-  const PORT = configService.get(PORT_ENV);
+  const PORT = configService.get(PORT_ENV, { hostname: '0.0.0.0/0' });
 
   /* static */
   app.useStaticAssets(join(__dirname, '../..', 'uploads'));
