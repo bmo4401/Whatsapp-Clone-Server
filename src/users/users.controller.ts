@@ -18,8 +18,11 @@ export class UsersController {
 
   @Get('/refresh')
   @ResponseMessage('Refresh Page')
-  refresh(@Cookie(ACCESS_TOKEN_KEY) cookie: string) {
-    return this.usersService.refresh(cookie);
+  refresh(
+    @Cookie(ACCESS_TOKEN_KEY) cookie: string,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    return this.usersService.refresh(cookie, response);
   }
 
   @Post('/register')

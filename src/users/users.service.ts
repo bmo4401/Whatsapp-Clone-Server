@@ -122,7 +122,7 @@ export class UsersService {
     }
   };
 
-  async refresh(cookie: string) {
+  async refresh(cookie: string, response: Response) {
     console.log('❄️ ~ file: users.service.ts:126 ~ cookie:', cookie);
     try {
       await this.jwtService.verifyAsync(cookie, {
