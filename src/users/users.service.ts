@@ -8,6 +8,7 @@ import ms from 'ms';
 import { Response } from 'express';
 const JWT_ACCESS_TOKEN_SECRET = 'JWT_ACCESS_TOKEN_SECRET';
 const JWT_ACCESS_TOKEN_EXPIRES = 'JWT_ACCESS_TOKEN_EXPIRES';
+const JWT_REFRESH_TOKEN_EXPIRES = 'JWT_REFRESH_TOKEN_EXPIRES';
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN_KEY';
 
 @Injectable()
@@ -215,14 +216,14 @@ export class UsersService {
   createAccessToken = (payload: any) => {
     return this.jwtService.sign(payload, {
       secret: this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET),
-      expiresIn:
-        ms(this.configService.get<string>(JWT_ACCESS_TOKEN_EXPIRES) as string) /
-        1000,
+      expiresIn: this.configService.get<string>(
+        JWT_ACCESS_TOKEN_EXPIRES,
+      ) as string,
     });
   };
   getExpirationTimeAccessToken = () => {
     return (
-      ms(this.configService.get<string>(JWT_ACCESS_TOKEN_EXPIRES) as string) *
+      ms(this.configService.get<string>(JWT_REFRESH_TOKEN_EXPIRES) as string) *
       1000
     );
   };
