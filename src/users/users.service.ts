@@ -218,9 +218,10 @@ export class UsersService {
     });
   };
   getExpirationTimeAccessToken = () => {
-    return (
+    const time =
       ms(this.configService.get<string>(JWT_REFRESH_TOKEN_EXPIRES) as string) *
-      1000
-    );
+      1000;
+    console.log('❄️ ~ file: users.service.ts:225 ~ time:', time);
+    return time;
   };
 }
