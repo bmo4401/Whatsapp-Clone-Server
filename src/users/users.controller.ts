@@ -22,8 +22,6 @@ export class UsersController {
     @Cookie(ACCESS_TOKEN_KEY) cookie: string,
     @Res({ passthrough: true }) response: Response,
   ) {
-    console.log('❄️ ~ file: users.controller.ts:25 ~ cookie:', cookie);
-    console.log('❄️ ~ file: users.controller.ts:25 ~ response:', response);
     return this.usersService.refresh(cookie, response);
   }
 
