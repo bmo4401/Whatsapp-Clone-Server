@@ -24,7 +24,7 @@ async function bootstrap() {
 
   /* cors */
   app.enableCors({
-    origin: true,
+    origin: configService.get('FONTEND_URL'),
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     credentials: true, //exchange cookie with client
