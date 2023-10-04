@@ -45,6 +45,7 @@ export class UsersService {
       response.cookie(ACCESS_TOKEN_KEY, access_token, {
         httpOnly: true,
         maxAge: this.getExpirationTimeAccessToken(),
+        secure: true,
         sameSite: 'none',
       });
       return {
