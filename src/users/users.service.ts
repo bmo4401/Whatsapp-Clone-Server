@@ -26,7 +26,7 @@ export class UsersService {
       });
       response.setHeader(
         'Access-Control-Allow-Origin',
-        this.configService.get('FONTEND_URL') as string,
+        (this.configService.get('FONTEND_URL') as string) + '/login',
       );
       if (!user) {
         return { message: 'User not found', status: false };
