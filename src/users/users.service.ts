@@ -37,6 +37,10 @@ export class UsersService {
 
       const payload = { ...info, email };
       const access_token = this.createAccessToken(payload);
+      console.log(
+        '❄️ ~ file: users.service.ts:40 ~ access_token:',
+        access_token,
+      );
       /*   const refresh_token = this.createRefreshToken(payload); */
       await this.updateAccessToken(access_token, user.id);
       /* set cookies */
@@ -45,6 +49,7 @@ export class UsersService {
         httpOnly: true,
         maxAge: this.getExpirationTimeAccessToken(),
       });
+      console.log(response.get(ACCESS_TOKEN_KEY));
       return {
         message: 'User found',
         status: true,
@@ -124,6 +129,8 @@ export class UsersService {
   };
 
   async refresh(cookie: string, response: Response) {
+    console.log('❄️ ~ file: users.service.ts:127 ~ cookie:', cookie);
+    console.log(this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET));
     try {
       await this.jwtService.verifyAsync(cookie, {
         secret: this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET),
