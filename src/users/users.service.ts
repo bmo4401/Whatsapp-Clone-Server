@@ -45,6 +45,7 @@ export class UsersService {
       response.cookie(ACCESS_TOKEN_KEY, access_token, {
         httpOnly: true,
         maxAge: this.getExpirationTimeAccessToken(),
+        sameSite: 'none',
       });
       return {
         message: 'User found',
