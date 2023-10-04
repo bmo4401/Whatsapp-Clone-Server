@@ -37,10 +37,7 @@ export class UsersService {
 
       const payload = { ...info, email };
       const access_token = this.createAccessToken(payload);
-      console.log(
-        '❄️ ~ file: users.service.ts:40 ~ access_token:',
-        access_token,
-      );
+
       /*   const refresh_token = this.createRefreshToken(payload); */
       await this.updateAccessToken(access_token, user.id);
       /* set cookies */
@@ -49,7 +46,6 @@ export class UsersService {
         httpOnly: true,
         maxAge: this.getExpirationTimeAccessToken(),
       });
-      console.log(response.get(ACCESS_TOKEN_KEY));
       return {
         message: 'User found',
         status: true,
@@ -59,7 +55,6 @@ export class UsersService {
         },
       };
     } catch (error) {
-      console.log('❄️ ~ file: users.service.ts:39 ~ error:', error);
       throw new HttpException(
         { message: 'Something went wrong', status: false },
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -92,7 +87,6 @@ export class UsersService {
       });
       return { message: 'Success', status: true, data: res };
     } catch (error) {
-      console.log('❄️ ~ file: users.service.ts:67 ~ error:', error);
       throw new HttpException(
         {
           message: error?.response?.message || 'Something went wrong',
@@ -128,9 +122,7 @@ export class UsersService {
     }
   };
 
-  async refresh(cookie: string, response: Response) {
-    console.log('❄️ ~ file: users.service.ts:127 ~ cookie:', cookie);
-    console.log(this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET));
+  async refresh(cookie: string) {
     try {
       await this.jwtService.verifyAsync(cookie, {
         secret: this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET),
@@ -152,7 +144,6 @@ export class UsersService {
         message: 'Success',
       };
     } catch (err) {
-      console.log('❄️ ~ file: users.service.ts:148 ~ err:', err);
       throw new HttpException(
         {
           message:
@@ -186,7 +177,6 @@ export class UsersService {
       );
       return { message: 'Success', status: true, data: token };
     } catch (error) {
-      console.log('❄️ ~ file: users.service.ts:93 ~ error:', error);
       throw new HttpException(
         { message: 'Something went wrong', status: false },
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -228,7 +218,6 @@ export class UsersService {
     const time =
       ms(this.configService.get<string>(JWT_REFRESH_TOKEN_EXPIRES) as string) *
       1000;
-    console.log('❄️ ~ file: users.service.ts:225 ~ time:', time);
     return time;
   };
 }
