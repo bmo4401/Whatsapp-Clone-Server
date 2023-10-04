@@ -123,6 +123,7 @@ export class UsersService {
   };
 
   async refresh(cookie: string) {
+    console.log('❄️ ~ file: users.service.ts:126 ~ cookie:', cookie);
     try {
       await this.jwtService.verifyAsync(cookie, {
         secret: this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET),
@@ -144,6 +145,7 @@ export class UsersService {
         message: 'Success',
       };
     } catch (err) {
+      console.log('❄️ ~ file: users.service.ts:147 ~ err:', err);
       throw new HttpException(
         {
           message:
