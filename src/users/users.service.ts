@@ -64,14 +64,10 @@ export class UsersService {
   registerOne = async (data: User, response: Response) => {
     try {
       const { email, name, profileImage, about } = data;
-      console.log(
-        '❄️ ~ file: users.service.ts:66 ~ profileImage:',
-        profileImage,
-      );
+
       const check = await this.prisma.user.findFirst({
         where: { email },
       });
-      console.log('❄️ ~ file: users.service.ts:67 ~ check:', check);
       if (check)
         throw new HttpException(
           { message: 'Email existing', status: false },
@@ -80,7 +76,6 @@ export class UsersService {
       const res = await this.prisma.user.create({
         data: { email, name, profileImage, about },
       });
-      console.log('❄️ ~ file: users.service.ts:78 ~ res:', res);
       const info = { sub: 'token login', iss: 'from server' };
       const payload = { ...info, email };
       const access_token = this.createAccessToken(payload);
@@ -150,6 +145,7 @@ export class UsersService {
         message: 'Success',
       };
     } catch (err) {
+      console.log('❄️ ~ file: users.service.ts:148 ~ err:', err);
       throw new HttpException(
         {
           message:
