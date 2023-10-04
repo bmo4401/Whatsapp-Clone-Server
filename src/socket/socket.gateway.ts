@@ -91,7 +91,16 @@ export class EventsGateway implements OnGatewayConnection {
 
   @SubscribeMessage(SOCKET['REJECT-VIDEO-CALL'])
   rejectVideoCall(@MessageBody() data: any) {
+    console.log('❄️ ~ file: socket.gateway.ts:94 ~ data:', data);
     const sendUserSocket = GlobalService.onlineUsers.get(data.from);
+    console.log(
+      '❄️ ~ file: socket.gateway.ts:96 ~ GlobalService.onlineUsers:',
+      GlobalService.onlineUsers,
+    );
+    console.log(
+      '❄️ ~ file: socket.gateway.ts:96 ~ sendUserSocket:',
+      sendUserSocket,
+    );
     if (sendUserSocket) {
       this.server.sockets
         .to(sendUserSocket)

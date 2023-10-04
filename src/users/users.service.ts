@@ -126,7 +126,6 @@ export class UsersService {
   };
 
   async refresh(cookie: string, response: Response) {
-    console.log('❄️ ~ file: users.service.ts:126 ~ cookie:', cookie);
     try {
       await this.jwtService.verifyAsync(cookie, {
         secret: this.configService.get<string>(JWT_ACCESS_TOKEN_SECRET),
